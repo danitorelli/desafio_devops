@@ -14,4 +14,4 @@ ENV PYTHONUNBUFFERED 1
 ENV PYTHONDONTWRITEBYTECODE 1
 ENV PATH="/opt/venv/bin:$PATH"
 
-CMD streamlit run project/app.py
+CMD streamlit run app.py
