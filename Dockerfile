@@ -1,17 +1,17 @@
 FROM python:3.9-slim
 
-EXPOSE 8501
+ENV VIRTUAL_ENV=/opt/venv
+RUN python3 -m venv $VIRTUAL_ENV
+ENV PATH="$VIRTUAL_ENV/bin:$PATH"
+
+RUN pip install --upgrade pip
+COPY ./requirements.txt .
+RUN pip install -r requirements.txt
 
 WORKDIR /app
 
-RUN apt-get update && apt-get install -y \
-    build-essential \
-    software-properties-common \
-    git \
-    && rm -rf /var/lib/apt/lists/*
+ENV PYTHONUNBUFFERED 1
+ENV PYTHONDONTWRITEBYTECODE 1
+ENV PATH="/opt/venv/bin:$PATH"
 
-COPY . .
-
-RUN pip3 install -r requirements.txt
-
-ENTRYPOINT ["streamlit", "run", "hello_world.py", "--server.port=8501", "--server.address=0.0.0.0"]
+CMD streamlit run project/hello_world.py

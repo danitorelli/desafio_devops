@@ -1,0 +1,5 @@
+Pipfile
+Pipfile.lock
+.git
+.venv
+.env*
