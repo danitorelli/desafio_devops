@@ -4,4 +4,4 @@ services:
       dockerfile: ./Dockerfile
       context: ./
     ports:
-      - "8081:8501"
+      - "8501:8501"
